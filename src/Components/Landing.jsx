@@ -15,7 +15,7 @@ const Landing = () => {
 
   useEffect(() => {
     fetch(
-      "https://emerge-founder-data-naomi.s3.us-east-1.amazonaws.com/founder.json",
+      "https://emerge-founder-data-naomi-12345.s3.amazonaws.com/founder.json",
     )
       .then((response) => {
         if (!response.ok) {
