@@ -11,11 +11,9 @@ const Landing = () => {
     bio: "I started Emerge Textiles to help schools, churches, brands, and communities turn their identity into beautiful custom fabrics. My work blends creativity, storytelling, and practical production to create textiles people are proud to wear.",
     portfolioUrl: "https://naomiansah.blog",
   });
+  const [status, setStatus] = useState("loading");
 
   useEffect(() => {
-    // CORS PROJECT IDEA:
-    // Later, replace this URL with a JSON file hosted on your portfolio domain.
-    // Example: https://naomiansah.blog/founder.json
     fetch(
       "https://emerge-founder-data-naomi.s3.us-east-1.amazonaws.com/founder.json",
     )
@@ -25,9 +23,13 @@ const Landing = () => {
         }
         return response.json();
       })
-      .then((data) => setFounder(data))
-      .catch(() => {
-        // Keeps the default founder details above if the JSON is not available yet.
+      .then((data) => {
+        setFounder(data);
+        setStatus("success");
+      })
+      .catch((err) => {
+        console.error(err);
+        setStatus("error");
       });
   }, []);
   return (
@@ -205,6 +207,30 @@ const Landing = () => {
           </div>
 
           {/* RIGHT: Founder Text */}
+          {status === "success" && (
+            <p className="mt-4 text-sm text-gray-400">
+              Source: {founder.source} • Last updated: {founder.lastUpdated}
+            </p>
+          )}
+
+          {status === "loading" && (
+            <p className="text-[#c69c62]">
+              ⏳ Loading founder data from Amazon S3...
+            </p>
+          )}
+
+          {status === "success" && (
+            <p className="text-green-400">
+              ✅ Live founder data fetched from Amazon S3
+            </p>
+          )}
+
+          {status === "error" && (
+            <p className="text-red-400">
+              ❌ Failed to load founder data from S3
+            </p>
+          )}
+
           <div>
             <p className="font-serif text-xl italic text-[#c69c62]">
               About the Founder
@@ -221,6 +247,11 @@ const Landing = () => {
             <p className="mt-6 text-lg leading-8 text-neutral-300">
               {founder.bio}
             </p>
+            {status === "success" && (
+              <p className="mt-4 text-sm text-gray-400">
+                Source: {founder.source} • Last updated: {founder.lastUpdated}
+              </p>
+            )}
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <a

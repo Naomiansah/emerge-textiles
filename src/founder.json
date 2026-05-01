@@ -1,6 +1,9 @@
 {
   "name": "Naomi Ansah",
-  "role": "Founder of Emerge Textiles & Fashion",
-  "bio": "Emerge was built from a passion for custom fabrics, creative design, and helping schools, brands, and communities express identity through textiles.",
-  "portfolioUrl": "https://naomiansah.blog"
+  "role": "Founder, Emerge Textiles",
+  "bio": "This founder section is being dynamically loaded from an Amazon S3 JSON file using CORS. It shows how a frontend can request external data from another origin securely.",
+  "portfolioUrl": "https://naomiansah.blog",
+  "image": "https://emerge-textiles.vercel.app/founder.JPG",
+  "source": "Amazon S3",
+  "lastUpdated": "2026-05-01"
 }
