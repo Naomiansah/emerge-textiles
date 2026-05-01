@@ -16,7 +16,9 @@ const Landing = () => {
     // CORS PROJECT IDEA:
     // Later, replace this URL with a JSON file hosted on your portfolio domain.
     // Example: https://naomiansah.blog/founder.json
-    fetch("/founder.json")
+    fetch(
+      "https://emerge-founder-data-naomi.s3.us-east-1.amazonaws.com/founder.json",
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error("Founder data not found");
