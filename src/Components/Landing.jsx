@@ -219,12 +219,6 @@ const Landing = () => {
             </p>
           )}
 
-          {status === "success" && (
-            <p className="text-green-400">
-              ✅ Live founder data fetched from Amazon S3
-            </p>
-          )}
-
           {status === "error" && (
             <p className="text-red-400">
               ❌ Failed to load founder data from S3
@@ -232,6 +226,11 @@ const Landing = () => {
           )}
 
           <div>
+            {status === "success" && (
+              <p className="text-green-400">
+                ✅ Live founder data fetched from Amazon S3
+              </p>
+            )}
             <p className="font-serif text-xl italic text-[#c69c62]">
               About the Founder
             </p>
